@@ -17,15 +17,21 @@ function [ wt ] = observation_model_weight( zt, xt, map )
 
 thetaL = xt(3);
 
-xL = xt(1)+ 25* cos(theta);
+xL = xt(1)+ 25* cos(thetaL);
 
-yL = xt(2) + 25 * sin(theta);
+yL = xt(2) + 25 * sin(thetaL);
 
 wt = 0;
 %loop over each angle
 for angle = 0:179
     
     rangeVal = zt.r(angle +1);
+    
+    %toss out bad ranges
+    if (rangeVal < 5 || rangeVal > 750)
+        
+      continue;  
+    end
     rangeAng = (angle) * (pi/180);
     
     %transform range data to xy coords wrt laser coordinate system
@@ -41,11 +47,26 @@ for angle = 0:179
     
     rangeX = round(rangeX_wrtL + xL);
     rangeY = round(rangeY_wrtL + yL);
-    %lookup map location
     
+    
+    %toss out bad hit locations
+    if (rangeX < 1 || rangeX > 800)
+        
+      continue;  
+    end
+    
+    if (rangeY < 1 || rangeY > 800)
+        
+      continue;  
+    end
+    
+    %lookup map location
+    occValue = map(rangeX, rangeY);
     
     %if occupied
+    if (occValue > 0.7)
         wt = wt + 1;
+    end
         
 %end loop
 end
