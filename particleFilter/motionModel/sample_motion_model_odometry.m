@@ -1,4 +1,7 @@
 function x_t = sample_motion_model_odometry(u_t, x_tm1, alpha)
+%u_t is the current control (x_bar_tm,x_bar_t)
+%x_tml is the last state estimate
+%alpha is the 4-vector of alpha parameters.
 
 %extract structs
 x = x_tm1(1);
@@ -29,6 +32,7 @@ delta_prime_trans = delta_trans - sample_normal_distribution(alpha(3)*delta_tran
 delta_prime_rot2 = delta_rot2 - sample_normal_distribution(alpha(1)*delta_rot2 + alpha(2)*delta_trans);
 
 %{
+%no noise test case
 delta_prime_rot1 = delta_rot1;
 delta_prime_trans = delta_trans;
 delta_prime_rot2 = delta_rot2;

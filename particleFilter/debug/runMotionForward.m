@@ -1,9 +1,9 @@
-function states = runMotionForward(odometry)
+function states = runMotionForward(odometry,alpha)
 
 %load odometry data
 %load parsedData.mat;
 %odometry = ROBOT{1}.Odometry;
-alpha = [0.01,0.01,0.01,0.01];
+%alpha = [0.01,0.01,0.01,0.01];
 
 %sample states
 states = zeros(length(odometry.x),3);
