@@ -36,7 +36,7 @@ while ischar(tline)
         Odometry.x(odPacketCount) = parsedDoubles(1);
         Odometry.y(odPacketCount) = parsedDoubles(2);
         Odometry.theta(odPacketCount) = parsedDoubles(3);
-        Odometry.ts(odPacketCount)  =parsedDoubles(4);
+        Odometry.ts(odPacketCount)  = parsedDoubles(4);
         odPacketCount = odPacketCount + 1;
 
     end
