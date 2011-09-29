@@ -2,7 +2,7 @@ function testFilter()
 
 %params (default)
 robotNum=1;
-numParticles = 10;
+numParticles = 100;
 alpha = [0.01,0.01,0.01,0.01];
 resampleEveryWhat = 10;
 
@@ -12,6 +12,9 @@ robotData = ROBOT{robotNum};
 
 %init particle filter
 X_tml = initParticlesFancy(numParticles, MAP);
+
+%plot initial particles state
+plotParticlesOnMap(X_tml, MAP);        
 
 %loop through robot data
 %NOTE: Starting with number 2 but might be missing a sensor update.
@@ -33,5 +36,8 @@ for i=2:length(robotData.ts)
         z_t.r = robotData.r(i,:);        
         updateFilter_obs(X_tml, z_t, MAP, RESAMPLE);
     end
-        
+    
+    %plot update
+    plotParticlesOnMap(X_tml, MAP);        
+
 end
