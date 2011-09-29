@@ -11,7 +11,7 @@ b = pi;
 
 theta = a + (b-a).*rand(num_part,1);
 
-
-X_0 = [x y theta];
+%particles are equally weighted when we start.
+X_0 = [x,y,theta,1/num_part];
 end
 

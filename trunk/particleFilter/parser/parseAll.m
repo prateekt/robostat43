@@ -3,7 +3,7 @@ function parseAll()
 %load robot data
 for i=1:5
     robotLogFile  = ['robotdata',num2str(i),'.log'];
-    ROBOT{i} = parseRobotDataLog(robotLogFile);
+    ROBOT{i} = parseRobotDataLog2(robotLogFile);
 end
 
 %load map data

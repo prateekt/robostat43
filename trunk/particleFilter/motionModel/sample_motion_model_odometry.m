@@ -7,6 +7,7 @@ function x_t = sample_motion_model_odometry(u_t, x_tm1, alpha)
 x = x_tm1(1);
 y = x_tm1(2);
 theta = x_tm1(3);
+weight = x_tm1(4);
 
 x_bar_tm1 = u_t(1:3);
 x_bar_t = u_t(4:6);
@@ -44,4 +45,4 @@ y_prime = y + delta_prime_trans*sin(theta + delta_prime_rot1);
 theta_prime = theta + delta_prime_rot1 + delta_prime_rot2;
 
 %return
-x_t = [x_prime, y_prime, theta_prime]';
+x_t = [x_prime, y_prime, theta_prime, weight]';

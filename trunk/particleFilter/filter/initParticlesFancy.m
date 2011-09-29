@@ -2,7 +2,7 @@ function [ X_0 ] = initParticlesFancy( num_part, map )
 %PARTICLEFILTER Summary of this function goes here
 %   Detailed explanation goes here
 k = 0;
-X_0 = zeros(num_part, 3);
+X_0 = zeros(num_part, 4);
 while k < num_part
     a = 1;
     b = 800;
@@ -14,7 +14,7 @@ while k < num_part
     
     if (map(round(x), round(y)) == 0)
         k = k+1;
-        X_0(k, :) = [x y theta];
+        X_0(k, :) = [x,y,theta,1/num_part];
     end
 end
 end
