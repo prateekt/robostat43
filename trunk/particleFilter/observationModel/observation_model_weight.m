@@ -1,4 +1,4 @@
-function [ wt ] = observation_model_weight( zt, xt, map )
+function [ wt ] = observation_model_weight( zt, xt, map, occupancyThreshold, minRange, maxRange )
 %wt is the weight of the particle at time t
 %zt is the observation (i.e. the laser data)
 %xt is the state
@@ -40,7 +40,7 @@ for angle = 0:179
     rangeVal = zt.r(angle +1);
     
     %toss out bad ranges
-    if (rangeVal < 5 || rangeVal > 7500)
+    if (rangeVal < minRange || rangeVal > maxRange)
         
       continue;  
     end
@@ -76,7 +76,7 @@ for angle = 0:179
     occValue = map(rangeX, rangeY);
     
     %if occupied
-    if (occValue > 0.7)
+    if (occValue > occupancyThreshold)
         wt = wt + 1;
     end
         
