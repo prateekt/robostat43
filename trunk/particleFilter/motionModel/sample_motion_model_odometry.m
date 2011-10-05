@@ -39,8 +39,8 @@ delta_prime_rot2 = delta_rot2 - sample_normal_distribution(alpha(1)*delta_rot2 +
 % delta_prime_rot2 = delta_rot2;
 
 %updates
-x_prime = x + delta_prime_trans*cos(theta + delta_prime_rot1);
-y_prime = y + delta_prime_trans*sin(theta + delta_prime_rot1);
+x_prime = x + (delta_prime_trans/10)*cos(theta + delta_prime_rot1);
+y_prime = y + (delta_prime_trans/10)*sin(theta + delta_prime_rot1);
 theta_prime = theta + delta_prime_rot1 + delta_prime_rot2;
 
 %return
