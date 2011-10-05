@@ -17,9 +17,9 @@ function [ wt ] = observation_model_weight( zt, xt, map )
 
 thetaL = xt(3);
 
-xL = xt(1)+ 25* cos(thetaL);
+xL = xt(1)+ 2.5* cos(thetaL);
 
-yL = xt(2) + 25 * sin(thetaL);
+yL = xt(2) + 2.5 * sin(thetaL);
 
 wt = 0;
 if(xt(1) < 1 || xt(1) > 790 || xt(2) < 1 || xt(2) > 790)
@@ -57,8 +57,8 @@ for angle = 0:179
     %transform to map coords and round
     %since the coordinate systems are already aligned, simple addition
     
-    rangeX = round(rangeX_wrtL + xL);
-    rangeY = round(rangeY_wrtL + yL);
+    rangeX = round(rangeX_wrtL/10 + xL);
+    rangeY = round(rangeY_wrtL/10 + yL);
     
     
     %toss out bad hit locations
