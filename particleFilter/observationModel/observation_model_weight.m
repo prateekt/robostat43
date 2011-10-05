@@ -22,13 +22,25 @@ xL = xt(1)+ 25* cos(thetaL);
 yL = xt(2) + 25 * sin(thetaL);
 
 wt = 0;
+if(xt(1) < 1 || xt(1) > 790 || xt(2) < 1 || xt(2) > 790)
+    return;
+end
+if(map(round(xt(1)), round(xt(2))) == -1)
+    return;
+end
+
+if(map(round(xt(1)), round(xt(2))) > 0.1)
+    return;
+end
+
+
 %loop over each angle
 for angle = 0:179
     
     rangeVal = zt.r(angle +1);
     
     %toss out bad ranges
-    if (rangeVal < 5 || rangeVal > 750)
+    if (rangeVal < 5 || rangeVal > 7500)
         
       continue;  
     end
@@ -70,6 +82,5 @@ for angle = 0:179
         
 %end loop
 end
-
 end
 
