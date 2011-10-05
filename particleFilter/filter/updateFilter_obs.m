@@ -13,7 +13,7 @@ for m=1:M
 end    
 
 %normalize weights
-X_bar_t(:,end) = X_bar_t(:,end) / sum(X_bar_t(:,end));
+X_bar_t(:,4) = X_bar_t(:,4) / sum(X_bar_t(:,4));
 
 %resample if needed and return
 if(RESAMPLE)

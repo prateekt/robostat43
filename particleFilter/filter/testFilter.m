@@ -1,8 +1,8 @@
 function testFilter()
 
 %params (default)
-robotNum=1;
-numParticles = 50;
+robotNum=2;
+numParticles = 500;
 alpha = [0.01,0.01,0.01,0.01];
 resampleEveryWhat = 10;
 
