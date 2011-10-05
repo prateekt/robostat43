@@ -38,8 +38,8 @@ for angle = 0:179
     %x and y values are wrt a coordinate system originating at the laser
     %but aligned with the world coordinate system (i.e. the rotation of the
     %robot is accounted for here)
-    rangeX_wrtL = rangeVal * cos(rangeAng - thetaL);
-    rangeY_wrtL = rangeVal * sin(rangeAng - thetaL);
+    rangeX_wrtL = rangeVal * cos(rangeAng + thetaL - pi/2);
+    rangeY_wrtL = rangeVal * sin(rangeAng + thetaL - pi/2);
     
     
     %transform to map coords and round
