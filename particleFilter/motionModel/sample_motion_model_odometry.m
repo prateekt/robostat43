@@ -27,17 +27,16 @@ delta_rot1 = atan2(y_bar_prime - y_bar, x_bar_prime - x_bar) - theta_bar;
 delta_trans = sqrt( (x_bar - x_bar_prime)^2 + (y_bar - y_bar_prime)^2 );
 delta_rot2 = theta_bar_prime - theta_bar - delta_rot1;
 
-%add noise
-%{
+
 delta_prime_rot1 = delta_rot1 - sample_normal_distribution(alpha(1)*delta_rot1 + alpha(2)*delta_trans);
 delta_prime_trans = delta_trans - sample_normal_distribution(alpha(3)*delta_trans + alpha(4)*(delta_rot1 + delta_rot2));
 delta_prime_rot2 = delta_rot2 - sample_normal_distribution(alpha(1)*delta_rot2 + alpha(2)*delta_trans);
-%}
 
-%no noise test case
-delta_prime_rot1 = delta_rot1;
-delta_prime_trans = delta_trans;
-delta_prime_rot2 = delta_rot2;
+
+% %no noise test case
+% delta_prime_rot1 = delta_rot1;
+% delta_prime_trans = delta_trans;
+% delta_prime_rot2 = delta_rot2;
 
 %updates
 x_prime = x + delta_prime_trans*cos(theta + delta_prime_rot1);
