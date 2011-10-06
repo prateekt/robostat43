@@ -4,7 +4,7 @@ function testFilter()
 
 robotNum=1;
 numParticles = 500;
-occupancyThreshold = 0.7;
+occupancyThreshold = 0.65;
 minRange = 5;
 maxRange = 7500;
 alpha = [0.01,0.01,0.01,0.01];
@@ -13,6 +13,11 @@ resampleEveryWhat = 10;
 %load robot
 load parsedData.mat;
 robotData = ROBOT{robotNum};
+
+%smooth map
+h = fspecial('gaussian', 5, 4);
+
+MAP = filter2(h, MAP);
 
 %init particle filter
 X_tml = initParticlesFancy(numParticles, MAP);
