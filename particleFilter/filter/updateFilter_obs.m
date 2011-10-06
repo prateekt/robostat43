@@ -12,6 +12,10 @@ for m=1:M
     X_bar_t(m,:) = [x_t(1:3),weight]; 
 end    
 
+%smash weights
+
+X_bar_t(:,4) = X_bar_t(:,4) .^ (1/M);
+
 %normalize weights
 X_bar_t(:,4) = X_bar_t(:,4) / sum(X_bar_t(:,4));
 
