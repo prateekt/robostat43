@@ -28,7 +28,7 @@ plotParticlesOnMap(X_tml, MAP);
 %loop through robot data
 %NOTE: Starting with number 2 but might be missing a sensor update.
 for i=2:length(robotData.ts)
-    
+    i
     %set resample flag for time step
     if(mod(i,resampleEveryWhat)==0)
         RESAMPLE = true;
