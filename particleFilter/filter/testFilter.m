@@ -1,8 +1,12 @@
 function testFilter()
 
 %params (default)
-robotNum=2;
+
+robotNum=1;
 numParticles = 500;
+occupancyThreshold = 0.7;
+minRange = 5;
+maxRange = 7500;
 alpha = [0.01,0.01,0.01,0.01];
 resampleEveryWhat = 10;
 
@@ -36,7 +40,7 @@ for i=2:length(robotData.ts)
     %do a sensor update if we have a laser packet.
     if(robotData.is_laser_packet(i))
         z_t.r = robotData.r(i,:);        
-        X_tml = updateFilter_obs(X_tml, z_t, MAP, RESAMPLE);
+        X_tml = updateFilter_obs(X_tml, z_t, MAP, RESAMPLE, minRange, maxRange, occupancyThreshold);
     end
     
  
