@@ -5,7 +5,7 @@ rand('seed',5489);
 
 %% params (default)
 robotNum=1;
-numParticles = 5;
+numParticles = 1000;
 occupancyThreshold = 0.65;
 minRange = 5;
 maxRange = 7500;
