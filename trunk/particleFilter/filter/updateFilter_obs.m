@@ -13,7 +13,6 @@ for m=1:M
 end    
 
 %smash weights
-
 X_bar_t(:,4) = X_bar_t(:,4) .^ (1/M);
 
 %normalize weights
