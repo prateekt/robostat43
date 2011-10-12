@@ -1,10 +1,10 @@
 function testFilter(alpha, resampleEveryWhat, SMOOTHING_H_SIGMA, expID)
 tic
 %%IMPORTANT -- PRESET RANDOM SEED FOR EXPERIMENTATION
-rand('seed',5489);
+%rand('seed',5489);
 
 %% params (default)
-robotNum=1;
+robotNum=2;
 numParticles = 1000;
 occupancyThreshold = 0.65;
 minRange = 5;
@@ -60,7 +60,7 @@ for i=2:length(robotData.ts)
     end
             
     %update statistics and plot if necessary
-    PLOT = false;
+    %PLOT = false;
     plotParticleStats(X_tml, MAP, i, numParticles, RESAMPLE, PLOT);        
 end
 
