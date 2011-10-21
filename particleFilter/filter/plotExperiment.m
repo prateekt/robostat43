@@ -4,6 +4,6 @@ function plotExperiment( particleSets )
 load parsedData.mat;
 for i=1:length(particleSets)
     i
-    plotParticlesOnMap(particleSets{2876}, MAP)%end
+    plotParticlesOnMap(particleSets{i}, MAP)%end
 end
 
