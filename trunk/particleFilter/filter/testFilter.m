@@ -60,8 +60,8 @@ for i=2:length(robotData.ts)
     end
             
     %update statistics and plot if necessary
-    %PLOT = false;
-    plotParticleStats(X_tml, MAP, i, numParticles, RESAMPLE, PLOT);        
+    PLOT = true;
+    plotParticleStats(X_tml, MAP, i, numParticles, RESAMPLE, PLOT); 
 end
 
 %% Save Statistics to File
