@@ -1,29 +1,29 @@
 %load reference data files
-load('rawTrainingData/1stWalk_rectangles_020810_15_39/HolodeckOutput/Synchronized1stWalk_rectangle_020810_15_39.txt');
+load('lib/rawTrainingData/1stWalk_rectangles_020810_15_39/HolodeckOutput/Synchronized1stWalk_rectangle_020810_15_39.txt');
 GT1 = Synchronized1stWalk_rectangle_020810_15_39;
-load('rawTrainingData/2ndWalk_rectangles_otherDir_020810_16_33/HolodeckOutput/Synchronized2ndWalk_rectangles_otherDir_020810_16_33.txt');
+load('lib/rawTrainingData/2ndWalk_rectangles_otherDir_020810_16_33/HolodeckOutput/Synchronized2ndWalk_rectangles_otherDir_020810_16_33.txt');
 GT2 = Synchronized2ndWalk_rectangles_otherDir_020810_16_33;
-load('rawTrainingData/3rdWalk_straight_020810_16_41/HolodeckOutput/Synchronized3rdWalk__straight_020810_16_41.txt');
+load('lib/rawTrainingData/3rdWalk_straight_020810_16_41/HolodeckOutput/Synchronized3rdWalk__straight_020810_16_41.txt');
 GT3 = Synchronized3rdWalk__straight_020810_16_41;
-load('rawTrainingData/4thWalk_8_020810_16_46/HolodeckOutput/Synchronized4thWalk_8_020810_16_44.txt');
+load('lib/rawTrainingData/4thWalk_8_020810_16_46/HolodeckOutput/Synchronized4thWalk_8_020810_16_44.txt');
 GT4 = Synchronized4thWalk_8_020810_16_44;
-load('rawTrainingData/5thWalk_straight_fast_020810_16_51/HolodeckOutput/Synchronized5thWalk_straight_fast_020810_16_51.txt');
+load('lib/rawTrainingData/5thWalk_straight_fast_020810_16_51/HolodeckOutput/Synchronized5thWalk_straight_fast_020810_16_51.txt');
 GT5 = Synchronized5thWalk_straight_fast_020810_16_51;
-load('rawTrainingData/6thWalk_onTable_030810_15_14/HolodeckOutput/Synchronized6thWalk_onTable_030810_15_14.txt');
+load('lib/rawTrainingData/6thWalk_onTable_030810_15_14/HolodeckOutput/Synchronized6thWalk_onTable_030810_15_14.txt');
 GT6 = Synchronized6thWalk_onTable_030810_15_14;
 
 %load IMU data files
-load('rawTrainingData/1stWalk_rectangles_020810_15_39/IMURaw.txt');
+load('lib/rawTrainingData/1stWalk_rectangles_020810_15_39/IMURaw.txt');
 IMU1 = IMURaw;
-load('rawTrainingData/2ndWalk_rectangles_otherDir_020810_16_33/IMURaw.txt');
+load('lib/rawTrainingData/2ndWalk_rectangles_otherDir_020810_16_33/IMURaw.txt');
 IMU2 = IMURaw;
-load('rawTrainingData/3rdWalk_straight_020810_16_41/IMURaw.txt');
+load('lib/rawTrainingData/3rdWalk_straight_020810_16_41/IMURaw.txt');
 IMU3 = IMURaw;
-load('rawTrainingData/4thWalk_8_020810_16_46/IMURaw.txt');
+load('lib/rawTrainingData/4thWalk_8_020810_16_46/IMURaw.txt');
 IMU4 = IMURaw;
-load('rawTrainingData/5thWalk_straight_fast_020810_16_51/IMURaw.txt');
+load('lib/rawTrainingData/5thWalk_straight_fast_020810_16_51/IMURaw.txt');
 IMU5 = IMURaw;
-load('rawTrainingData/6thWalk_onTable_030810_15_14/IMURaw.txt');
+load('lib/rawTrainingData/6thWalk_onTable_030810_15_14/IMURaw.txt');
 IMU6 = IMURaw;
 
 %do step segmentation on reference data
@@ -80,4 +80,4 @@ end
 %save data set
 Features = IMUAll;
 Labels = octantLabels;
-save('TrainingSet.mat', 'Features','Labels');
+save('lib/TrainingSet.mat', 'Features','Labels');
