@@ -9,6 +9,6 @@ NAIVE_BAYES_accs = classifyAll_LI(Features, Labels, 3, true);
 BASIC_BAYES_NET_accs = classifyAll_LI(Features, Labels, 4, true);
 ATTR_SELECTED_accs = classifyAll_LI(Features, Labels, 5, true);
 
-save allClassifierResults.mat; 
+save allClassifierResults_LI.mat; 
 
 
