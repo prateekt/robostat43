@@ -26,7 +26,7 @@ for i=1:size(Features,1)
         [maxF,maxInd] = max(f);
         modeF = xi(maxInd);
         
-        TBL_ROW = [TBL_ROW, mean(fList), min(fList),max(fList), median(fList), mode(fList), std(fList), mean(fList) - std(fList), mean(fList) + std(fList), sum(fft(fList)),modeF];   
+        TBL_ROW = [TBL_ROW, mean(fList), min(fList),max(fList), median(fList), mode(fList), std(fList), mean(fList) - std(fList), mean(fList) + std(fList), modeF];   
     end
     
     %put row in table
