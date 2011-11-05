@@ -1,7 +1,4 @@
-function acc = classifyAll_LI(Features, Labels, method, USE_WEKA_METHOD)
-
-%extract table
-TBL = getLITable(Features,Labels);
+function acc = classifyAll_LI(TBL, method, USE_WEKA_METHOD)
 
 %classify
 if(USE_WEKA_METHOD)

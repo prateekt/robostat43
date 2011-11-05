@@ -74,10 +74,46 @@ for i=1:length(lvAll)
 
 end
 
+%put all steps together into 1 cell
+stepsAll = {};
+cnt=1;
+for i=1:length(steps1)
+    stepsAll{cnt} = steps1{i};
+    cnt = cnt + 1;
+end
+for i=1:length(steps2)
+    stepsAll{cnt} = steps2{i};
+    cnt = cnt + 1;
+end
+for i=1:length(steps3)
+    stepsAll{cnt} = steps3{i};
+    cnt = cnt + 1;
+end
+for i=1:length(steps4)
+    stepsAll{cnt} = steps4{i};
+    cnt = cnt + 1;
+end
+for i=1:length(steps5)
+    stepsAll{cnt} = steps5{i};
+    cnt = cnt + 1;
+end
+for i=1:length(steps6)
+    stepsAll{cnt} = steps6{i};
+    cnt = cnt + 1;
+end
+
+%compute lengths
+IMULengths = zeros(size(IMUAll,1),1);
+stepLengths = zeros(size(stepsAll,1),1);
+for i=1:size(IMUAll)
+    IMULengths(i) = size(IMUAll{i},1);
+    stepLengths(i) = size(stepsAll{i},1);
+end
+
 %save data set
 Features = IMUAll;
 Labels = octantLabels;
-save('lib/TrainingSet_stepClassifier.mat', 'Features','Labels');
+save('lib/TrainingSet_stepClassifier.mat', 'Features','Labels', 'stepsAll', 'IMULengths','stepLengths');
 
 %% Create Training Set for Sequence Prediction
 

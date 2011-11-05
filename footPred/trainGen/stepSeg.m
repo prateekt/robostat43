@@ -3,7 +3,7 @@ function [stepsPruned, labelVectors] = stepSeg(xPts,yPts,zPts)
 %size calc
 numPoints = length(xPts);
 D_THRESH = 0.5;
-STEP_LENGTH = 3;
+STEP_LENGTH = 5;
 
 %set up 
 steps = {};
