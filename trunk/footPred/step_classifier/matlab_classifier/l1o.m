@@ -19,9 +19,9 @@ for i=1:size(X,1)
         if(size(train,1) < 10)
             K = floor(size(train,1)/2);
         else
-            K = 10;
+            K = 20;
         end        
-        label =knnclassify(X(i,:),train,trainLabels,K,'euclidean','nearest');
+        label =knnclassify(X(i,:),train,trainLabels,K,'correlation','nearest');
     elseif(method==DT)
         tree = treefit(train,trainLabels,'method','regression');
         label = eval(tree, X(i,:));

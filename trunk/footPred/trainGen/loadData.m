@@ -110,10 +110,30 @@ for i=1:size(IMUAll)
     stepLengths(i) = size(stepsAll{i},1);
 end
 
+%prune out steps with no IMU Data
+IMUAllFinal = {};
+stepsAllFinal = {};
+octantLabelsFinal = [];
+cnt = 1;
+for i=1:size(IMUAll)
+    
+    %see if IMU set is empty
+    if(isempty(IMUAll{i}))
+        continue;
+    end
+    
+    %else add
+    IMUAllFinal{cnt} = IMUAll{i};
+    stepsAllFinal{cnt} = stepsAll{i};
+    octantLabelsFinal(cnt) = octantLabels(i);
+    cnt = cnt + 1;
+    
+end
+
 %save data set
-Features = IMUAll;
-Labels = octantLabels;
-save('lib/TrainingSet_stepClassifier.mat', 'Features','Labels', 'stepsAll', 'IMULengths','stepLengths');
+Features = IMUAllFinal';
+Labels = octantLabelsFinal';
+save('lib/TrainingSet_stepClassifier.mat', 'Features','Labels', 'stepsAllFinal');
 
 %% Create Training Set for Sequence Prediction
 
