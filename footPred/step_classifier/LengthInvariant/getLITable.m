@@ -9,6 +9,7 @@ end
 %compute features for each step
 TBL = [];
 for i=1:size(Features,1)
+    
     stepFeatures = Features{i};
     
     %quick exit
@@ -18,7 +19,7 @@ for i=1:size(Features,1)
     
     %aggregate row 
     TBL_ROW = [];
-    for j=1:size(stepFeatures,2)
+    for j=size(stepFeatures,2)
         fList = stepFeatures(:,j);
         
         %add mode of distribution as feature
@@ -26,7 +27,21 @@ for i=1:size(Features,1)
         [maxF,maxInd] = max(f);
         modeF = xi(maxInd);
         
-        TBL_ROW = [TBL_ROW, mean(fList), min(fList),max(fList), median(fList), mode(fList), std(fList), mean(fList) - std(fList), mean(fList) + std(fList), modeF];   
+        %compute numerical gradient
+        grad = gradient(fList);
+        s2 = gradient(grad);
+        
+        %add statistics about list
+        TBL_ROW = [TBL_ROW, sum(fList), mean(fList), min(fList),max(fList), median(fList), mode(fList), std(fList), mean(fList) - 2*std(fList), mean(fList) + 2*std(fList), modeF, f(1), f(end), mean(fList)/std(fList), sum(autocorr(fList))];
+
+        %add statistics about gradient
+        fList = grad;
+        TBL_ROW = [TBL_ROW, sum(fList), mean(fList), min(fList),max(fList), median(fList), mode(fList), std(fList), mean(fList) - 2*std(fList), mean(fList) + 2*std(fList), modeF, f(1), f(end), mean(fList)/std(fList), sum(autocorr(fList))];
+
+        %add second derivative stats
+        fList = s2;
+        TBL_ROW = [TBL_ROW, sum(fList), mean(fList), min(fList),max(fList), median(fList), mode(fList), std(fList), mean(fList) - 2*std(fList), mean(fList) + 2*std(fList), modeF, f(1), f(end), mean(fList)/std(fList), sum(autocorr(fList))];
+        
     end
     
     %put row in table
