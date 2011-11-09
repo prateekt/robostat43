@@ -3,6 +3,6 @@ load TrainingSet_sequencePredictor.mat;
 load TestSet.mat;
 trainlabels = octantLabelSequence + 1;
 testlabels = octantLabelsTest + 1;
-tcount = getTransitionCounts(trainlabels, 8);
+tcount = getTCounts3(trainlabels, 8);
 
-acc = basicPredictionOnline(tcount, testlabels, 8, 2);
+acc = basicPred3(tcount, testlabels, 8);
