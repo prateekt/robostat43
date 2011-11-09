@@ -5,9 +5,9 @@ for i = 1: N-1
     
     %predict next label based on current
     
-     %nextLabel  = predictMostFrequent( transitionCounts, testSequence(i) );
+     nextLabel  = predictMostFrequent( transitionCounts, testSequence(i) );
      
-      nextLabel  = predictProbable( transitionCounts, testSequence(i), numLabels );
+      %nextLabel  = predictProbable( transitionCounts, testSequence(i), numLabels );
      
      %compare predcited to actual next label
      
