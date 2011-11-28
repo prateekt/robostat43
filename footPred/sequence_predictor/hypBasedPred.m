@@ -13,5 +13,5 @@ for i = 1:N-5
     hypList = updateHypList(newhyps, trainLabels(i+4), hypList, 8);
     
 end
-
-counts = getPredCountsBasic([1 1 1 1], hypList, 8);
+transitionCount = getTransitionCounts(trainLabels, 8);
+counts = getPredCountsBasic([8 8 8 8], hypList, 8);
