@@ -13,7 +13,7 @@ if(method==RAW_STEPS)
         pts = [pts; steps{i}];
 
         %plot
-        plot3(pts(:,1),pts(:,2),pts(:,3),'s');
+        plot(pts(:,1),'s');
         getframe(gcf);
 
     end

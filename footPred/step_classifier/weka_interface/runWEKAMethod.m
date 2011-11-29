@@ -3,7 +3,8 @@ function [acc,output] = runWEKAMethod(TBL,method)
 
 %paths and params
 WEKA_LOC = 'lib/weka.jar';
-arffFile = 'lib/test.arff';
+%arffFile = 'lib/test.arff';
+arffFile = 'lib/NN.arff';
 NUM_FOLDS_INT = 2;
 NUM_FOLDS = num2str(NUM_FOLDS_INT);
 
@@ -16,7 +17,7 @@ ATTR_SELECTED = 5;
 
 %% write arff file with data
 
-toArff(TBL, arffFile);
+%toArff(TBL, arffFile);
 
 %% Run Method
 
@@ -46,7 +47,6 @@ if(method==ATTR_SELECTED)
 end
 
 %% parse out cross-validation accuracy metric
-output
 
 %find line
 section = findstr(output, 'Stratified cross-validation');
