@@ -4,9 +4,8 @@ TBL = getLITable(Features,Labels);
 %% Run on MATLAB Classifiers
 
 %MATLAB classifiers
-KNN_accs = classifyAll_LI(TBL, 1, false);
-%{
-DT_accs = classifyAll_LI(Features, Labels, 2, false);
+%KNN_accs = classifyAll_LI(TBL, 1, false);
+%DT_accs = classifyAll_LI(Features, Labels, 2, false);
 
 %% Run on WEKA Classifiers
 
@@ -17,7 +16,6 @@ J48_accs = classifyAll_LI(TBL,2, true);
 NAIVE_BAYES_accs = classifyAll_LI(TBL, 3, true);
 %ATTR_SELECTED_accs = classifyAll_LI(TBL, 5, true);
 
-save allClassifierResults_LI.mat; 
-%}
+save allClassifierResults_LI2.mat; 
 
 

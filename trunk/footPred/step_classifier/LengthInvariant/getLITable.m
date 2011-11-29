@@ -19,7 +19,7 @@ for i=1:size(Features,1)
     
     %aggregate row 
     TBL_ROW = [];
-    for j=1:size(stepFeatures,2)
+    for j=4:size(stepFeatures,2)
         fList = stepFeatures(:,j);
         
         %add mode of distribution as feature
