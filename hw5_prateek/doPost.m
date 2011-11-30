@@ -1,8 +1,5 @@
 function [MU,SIGMA] = doPost(x, f, x_star)
 
-%get correct dim
-f=f';
-
 %flags
 VIS=true;
 NUM_SAMPLES=10;
@@ -14,7 +11,7 @@ K_21 = SEK(x_star,x)';
 K_xx_inv = SEK(x,x);
 
 %compute params
-MU = K_12*(K_xx_inv \ f');
+MU = K_12*(K_xx_inv \ f);
 SIGMA = K_11 + K_12*(K_xx_inv \ K_21);
 
 %plot distribution
