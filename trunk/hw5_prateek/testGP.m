@@ -28,9 +28,9 @@ fTest = fullFeatures(testInd,:);
 lTest = fL1(testInd);
 
 %clear memory
-save('AllButThat.mat','fTrain','lTrain','fTest');
+save('dats.mat','fTrain','lTrain','fTest', 'lTest');
 clear all;
-load AllButThat.mat;
+load dats.mat;
 
 %try gp on data
 [MU,SIGMA] = doPost(fTrain, lTrain, fTest);
