@@ -6,7 +6,9 @@ fullLoad = oakland_part3_am_rf;
 clear oakland_part3_am_rf;
 
 %extract training set features and labels
-fullFeatures1 = fullLoad(:,6:end);
+fullFeatures1 = fullLoad(:,[3,6:end]);
+fullFeatures1 = (fullFeatures1 - repmat(mean(fullFeatures1),size(fullFeatures1,1),1))./repmat(var(fullFeatures1),size(fullFeatures1,1),1);
+fullFeatures1(:,end) = 1;
 fullLabels = fullLoad(:,5);
 clear fullLoad;
 
@@ -25,7 +27,9 @@ testLoad = oakland_part3_an_rf;
 clear oakland_part3_an_rf;
 
 %extract training set features and labels
-fullFeatures1 = testLoad(:,6:end);
+fullFeatures1 = testLoad(:,[3,6:end]);
+fullFeatures1 = (fullFeatures1 - repmat(mean(fullFeatures1),size(fullFeatures1,1),1))./repmat(var(fullFeatures1),size(fullFeatures1,1),1);
+fullFeatures1(:,end) = 1;
 fullLabels = testLoad(:,5);
 clear testLoad;
 
@@ -42,4 +46,4 @@ clear all;
 load('dats.mat','fTrain','lTrain','fTest');
 
 %% try gp on data
-m = computeMean(fTrain,lTrain,fTest);
+m = computeMean(fTrain(1:size(lTrain,1)/2,:),lTrain(1:size(lTrain,1)/2,:),fTest);

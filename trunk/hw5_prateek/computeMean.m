@@ -7,5 +7,7 @@ K_12 = SEK(x_star,x);
 %K_21 = SEK(x_star,x)';
 alpha = (K_xx \ f);
 
+save matrices.mat;
+
 %compute mean
 m = K_12*alpha;
