@@ -11,10 +11,10 @@ for i=1:size(IMU,1)
     
     if(i > 1)
         livetime = IMU(i,3) - IMU(i-1,3);    
-        pos(i,:) = pos(i-1,:) + vel*livetime + acc*livetime^2;
+        pos(i,:) = pos(i-1,:) + vel*livetime + (acc*livetime^2)/2;
     else
         livetime = IMU(i,3);
-        pos(i,:) = vel*livetime + acc*livetime^2;
+        pos(i,:) = vel*livetime + (acc*livetime^2)/2;
     end
     
 end
