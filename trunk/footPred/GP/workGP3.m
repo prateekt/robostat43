@@ -15,9 +15,9 @@ zLab_train = pos_train(2:end,3);
 
 %regress features
 LOOK_AHEAD=1;
-F_NUM = 2;
+F_NUM = 3;
 ests = zeros(size(xFeatures,1),1);
-for i=4000:(size(xFeatures,1)-LOOK_AHEAD)
+for i=1:(size(xFeatures,1)-LOOK_AHEAD)
     
     %run GP
     x_in = xFeatures(1:i,1);
