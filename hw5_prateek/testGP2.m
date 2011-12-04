@@ -1,12 +1,13 @@
 %% flags
 
 %labels to learn class vs. class model
-label1=1400;
+label1=1004;
 label2=1103;
+TRAIN= false;
 
 %hyperparameters
-v=2;
-sigma=5;
+v=2; %squared exponential kernel bandwidth
+sigma=5; %noise model variable in noisy kernel
 
 %% load training data
 
@@ -62,16 +63,21 @@ fTest = fTest(r,:);
 lTest = lTest(r);
 
 %% clear memory
-save('dats.mat','fTrain','lTrain','fTest', 'lTest','v','sigma');
+save('dats.mat','fTrain','lTrain','fTest', 'lTest','v','sigma', 'TRAIN');
 clear all;
-load('dats.mat','fTrain','lTrain','fTest','v','sigma');
+load('dats.mat','fTrain','lTrain','fTest','v','sigma', 'TRAIN');
 
 %% try gp on data
-m = computeMean(fTrain(1:size(lTrain,1)/2,:),lTrain(1:size(lTrain,1)/2,:),fTest,v,sigma);
-%m = computeMean(fTrain(1:size(lTrain,1)/2,:),lTrain(1:size(lTrain,1)/2,:),fTrain((size(lTrain,1)/2+1):size(lTrain,1),:),v,sigma);
-
+if(~TRAIN)
+    m = computeMean(fTrain(1:size(lTrain,1),:),lTrain(1:size(lTrain,1),:),fTest,v,sigma);
+else
+    m = computeMean(fTrain(1:size(lTrain,1)/2,:),lTrain(1:size(lTrain,1)/2,:),fTrain((size(lTrain,1)/2+1):size(lTrain,1),:),v,sigma);
+end
 %% present accuracy
 load('dats.mat','lTest');
 y = -1*(m<0) + 1*(m>=0);
-acc = (sum(y==lTest)) / size(fTest,1)
-%acc = sum(lTrain((size(lTrain,1)/2+1):size(lTrain,1))==y) / (length(lTrain)/2)
+if(~TRAIN)
+    acc = (sum(y==lTest)) / size(fTest,1)
+else
+    acc = sum(lTrain((size(lTrain,1)/2+1):size(lTrain,1))==y) / (length(lTrain)/2)
+end
