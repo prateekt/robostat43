@@ -17,13 +17,13 @@ zLab_train = pos_train(2:end,3);
 
 %regress features
 LOOK_AHEAD=101;
-F_NUM = 3;
+F_NUM = 2;
 ests = zeros(size(xFeatures,1),101);
 for i=1:(size(xFeatures,1)-LOOK_AHEAD)
     
     %run GP
     x_in = yFeatures(1:i,1); %time
-    y_in = xFeatures(1:i,F_NUM); %feature
+    y_in = yFeatures(1:i,F_NUM); %feature
     z_in = yFeatures((i+1):(i+LOOK_AHEAD),1); %time
     m = regress(x_in,y_in,z_in,1);
 
