@@ -1,8 +1,8 @@
 %% flags
 
 %labels to learn class vs. class model
-label1=1004;
-label2=1103;
+label1=1400;
+label2=1100;
 TRAIN= false;
 
 %hyperparameters
@@ -69,7 +69,7 @@ load('dats.mat','fTrain','lTrain','fTest','v','sigma', 'TRAIN');
 
 %% try gp on data
 if(~TRAIN)
-    m = computeMean(fTrain(1:size(lTrain,1),:),lTrain(1:size(lTrain,1),:),fTest,v,sigma);
+    m = computeMean(fTrain(1:size(lTrain,1)/2,:),lTrain(1:size(lTrain,1)/2,:),fTest,v,sigma);
 else
     m = computeMean(fTrain(1:size(lTrain,1)/2,:),lTrain(1:size(lTrain,1)/2,:),fTrain((size(lTrain,1)/2+1):size(lTrain,1),:),v,sigma);
 end

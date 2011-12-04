@@ -1,5 +1,9 @@
 function m = computeMean(x,f,x_star, v,sigma)
 
+size(x)
+size(f)
+size(x_star)
+
 %compute parts
 %K_11 = SEK(x_star,x_star);
 K_xx = SEK(x,x,v) + sigma*eye(size(x,1));
