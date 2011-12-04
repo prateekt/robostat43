@@ -17,7 +17,7 @@ zLab_train = pos_train(2:end,3);
 
 %regress features
 LOOK_AHEAD=101;
-F_NUM = 2;
+F_NUM = 3;
 ests = zeros(size(xFeatures,1),101);
 for i=1:(size(xFeatures,1)-LOOK_AHEAD)
     
