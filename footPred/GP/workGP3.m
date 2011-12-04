@@ -16,9 +16,9 @@ zLab_train = pos_train(2:end,3);
 %xFeatures = xLab_train;
 
 %regress features
-LOOK_AHEAD=6;
+LOOK_AHEAD=101;
 F_NUM = 2;
-ests = zeros(size(xFeatures,1),1);
+ests = zeros(size(xFeatures,1),101);
 for i=1:(size(xFeatures,1)-LOOK_AHEAD)
     
     %run GP
@@ -28,7 +28,7 @@ for i=1:(size(xFeatures,1)-LOOK_AHEAD)
     m = regress(x_in,y_in,z_in,1);
 
     %store estimate
-    ests(i+LOOK_AHEAD) = m;
+    ests(i,:) = m;
     
     i
 end
