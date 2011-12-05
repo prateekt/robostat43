@@ -1,9 +1,10 @@
 %% flags
 
 %labels to learn class vs. class model
-label1=1400;
-label2=1100;
+label1=1100;
+label2=1400;
 TRAIN= false;
+NUM_NOISY_F = 6;
 
 %hyperparameters
 v=2; %squared exponential kernel bandwidth
@@ -19,8 +20,6 @@ clear oakland_part3_am_rf;
 
 %extract training set features and labels
 fullFeatures1 = fullLoad(:,[3,6:end]);
-%fullFeatures1 = (fullFeatures1 - repmat(mean(fullFeatures1),size(fullFeatures1,1),1))./repmat(var(fullFeatures1),size(fullFeatures1,1),1);
-%fullFeatures1(:,end) = 1;
 fullLabels = fullLoad(:,5);
 clear fullLoad;
 
@@ -45,8 +44,6 @@ clear oakland_part3_an_rf;
 
 %extract training set features and labels
 fullFeatures1 = testLoad(:,[3,6:end]);
-%fullFeatures1 = (fullFeatures1 - repmat(mean(fullFeatures1),size(fullFeatures1,1),1))./repmat(var(fullFeatures1),size(fullFeatures1,1),1);
-%fullFeatures1(:,end) = 1;
 fullLabels = testLoad(:,5);
 clear testLoad;
 
@@ -63,9 +60,13 @@ fTest = fTest(r,:);
 lTest = lTest(r);
 
 %% clear memory
-save('dats.mat','fTrain','lTrain','fTest', 'lTest','v','sigma', 'TRAIN', 'indices','r');
+save('dats.mat','fTrain','lTrain','fTest', 'lTest','v','sigma', 'TRAIN', 'NUM_NOISY_F');
 clear all;
-load('dats.mat','fTrain','lTrain','fTest','v','sigma', 'TRAIN');
+load('dats.mat','fTrain','lTrain','fTest','v','sigma', 'TRAIN', 'NUM_NOISY_F');
+
+%% Make data noisy
+fTrain  = [fTrain,fTrain(:,1:6)+rand(size(fTrain,1),NUM_NOISY_F)];
+fTest   = [fTest,fTest(:,1:6)+rand(size(fTest,1),NUM_NOISY_F)];
 
 %% try gp on data
 if(~TRAIN)
