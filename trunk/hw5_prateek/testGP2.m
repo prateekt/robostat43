@@ -2,7 +2,7 @@
 
 %labels to learn class vs. class model
 label1=1400;
-label2=1100;
+label2=1103;
 TRAIN= false;
 
 %hyperparameters
@@ -63,16 +63,45 @@ fTest = fTest(r,:);
 lTest = lTest(r);
 
 %% clear memory
-save('dats.mat','fTrain','lTrain','fTest', 'lTest','v','sigma', 'TRAIN', 'indices','r');
+save('dats.mat','fTrain','lTrain','fTest', 'lTest','v','sigma', 'TRAIN', 'indices','r','label1','label2');
 clear all;
-load('dats.mat','fTrain','lTrain','fTest','v','sigma', 'TRAIN');
+load('dats.mat','fTrain','lTrain','fTest','v','sigma', 'TRAIN','label1','label2');
 
 %% try gp on data
+
+%we have a sizing constant for what data set size to use. We need to make
+%sure we have a dataset that will generate kernel matrices that do not
+%exceed MATLAB matrix size. Ideally, we would generate as large a kernel
+%matrix as we need and store in a database, looking up elements as we need.
+if((label1==1400 && label2==1103) || (label1==1103 && label2==1400))
+    SC = 2;
+elseif((label1==1100 && label2==1103) || (label1==1103 && label2==1100))
+    SC=1;
+elseif((label1==1400 && label2==1100) || (label1==1100 && label2==1400))
+    SC=2;
+elseif((label1==1200 && label2==1400) || (label1==1400 && label2==1200))
+    SC=10;
+elseif((label1==1200 && label2==1100) || (label1==1100 && label2==1200))
+    SC=10;
+elseif((label1==1200 && label2==1103) || (label1==1103 && label2==1200))
+    SC=10;
+elseif((label1==1004 && label2==1400) || (label1==1400 && label2==1004))
+    SC=3;
+elseif((label1==1004 && label2==1100) || (label1==1100 && label2==1004))
+    SC=2;
+elseif((label1==1004 && label2==1200) || (label1==1200 && label2==1004))
+    SC=10;
+elseif((label1==1004 && label2==1103) || (label1==1103 && label2==1004))
+    SC=2;
+end
+
+%run gp
 if(~TRAIN)
-    m = computeMean(fTrain(1:size(lTrain,1)/2,:),lTrain(1:size(lTrain,1)/2,:),fTest,v,sigma);
+    m = computeMean(fTrain(1:size(lTrain,1)/SC,:),lTrain(1:size(lTrain,1)/SC,:),fTest,v,sigma);
 else
     m = computeMean(fTrain(1:size(lTrain,1)/2,:),lTrain(1:size(lTrain,1)/2,:),fTrain((size(lTrain,1)/2+1):size(lTrain,1),:),v,sigma);
 end
+
 %% present accuracy
 load('dats.mat','lTest');
 y = -1*(m<0) + 1*(m>=0);
