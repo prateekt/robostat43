@@ -13,7 +13,7 @@ xLab_train = pos_train(2:end,1);
 yLab_train = pos_train(2:end,2);
 zLab_train = pos_train(2:end,3);
 
-xFeatures = xLab_train;
+xFeatures = yLab_train;
 
 %regress features
 LOOK_AHEAD=101;
