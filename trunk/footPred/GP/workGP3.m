@@ -23,7 +23,7 @@ for i=1:(size(xFeatures,1)-LOOK_AHEAD)
     
     %run GP
     x_in = yFeatures(1:i,1); %time
-    y_in = yFeatures(1:i,F_NUM); %feature
+    y_in = zFeatures(1:i,F_NUM); %feature
     z_in = yFeatures((i+1):(i+LOOK_AHEAD),1); %time
     m = regress(x_in,y_in,z_in,1);
 
