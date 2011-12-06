@@ -13,7 +13,7 @@ xLab_train = pos_train(2:end,1);
 yLab_train = pos_train(2:end,2);
 zLab_train = pos_train(2:end,3);
 
-xFeatures = yLab_train;
+xFeatures = zLab_train;
 
 %regress features
 LOOK_AHEAD=101;
@@ -33,4 +33,4 @@ for i=1:(size(xFeatures,1)-LOOK_AHEAD)
     i
 end
 
-save('AllReg2.mat');
+save('AllReg3.mat');
