@@ -1,14 +1,24 @@
 clear;
 
+%select a parsedData.mat (noise, no noise, etc.)
 load parsedData.mat;
 
+%select a dataset (1 or 2)
+data = dataset1;
+
+%set the other dataset for held out comparison
+dataOther = dataset2;
 
 
 %create a binary feature one vs. all for ground (1200)
-data = dataset2;
+
 features = data.features';
 labels = data.labels;
 len = length(labels);
+
+featuresO = dataOther.features';
+labelsO = dataOther.labels;
+lenO = length(labelsO);
 
 %create matrix of labels
 allLabels = ones(len, 6) * -1;
@@ -23,13 +33,28 @@ allLabels(labels == 1103,6) = 3;
 allLabels(labels == 1200,6) = 4;
 allLabels(labels == 1400,6) = 5;
 
+allLabelsO = ones(lenO, 6) * -1;
+allLabelsO(labelsO == 1004,1) = 1;
+allLabelsO(labelsO == 1100,2) = 1;
+allLabelsO(labelsO == 1103,3) = 1;
+allLabelsO(labelsO == 1200,4) = 1;
+allLabelsO(labelsO == 1400,5) = 1;
+allLabelsO(labelsO == 1004,6) = 1;
+allLabelsO(labelsO == 1100,6) = 2;
+allLabelsO(labelsO == 1103,6) = 3;
+allLabelsO(labelsO == 1200,6) = 4;
+allLabelsO(labelsO == 1400,6) = 5;
+
+
 
 [ w pred_labels] = onlinesvmMulti(features, allLabels, 0.0001);
-
+[pred_labelsO] = weightvecClassify(featuresO, w);
 [acc errors correct] = getStats(allLabels(:,6), pred_labels);
-acc(end)
+[accO errorsO correctO] = getStats(allLabelsO(:,6), pred_labelsO);
+acc_online = acc(end)
+acc_heldout = accO(end)
 
-plotLabels =pred_labels;
+plotLabels = pred_labels;
 XYZ = data.coords;
 
 %plot green

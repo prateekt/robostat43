@@ -17,6 +17,7 @@ for t = 1:T
     w(:,4) = onlinesvm_iter( cur_feature, label(4), lambda, t, w(:,4) );
     w(:,5) = onlinesvm_iter( cur_feature, label(5), lambda, t, w(:,5) );
     
+    
 end
 
 
