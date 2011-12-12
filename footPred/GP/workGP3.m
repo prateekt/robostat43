@@ -2,13 +2,13 @@
 clear all;
 
 %load data
-load('fullLoad.mat','IMU1','GT1');
+load('fullLoad.mat','IMU2');
 
 %load train features and labels
-xFeatures = IMU1(:,[3,4,7,10,13]);
-yFeatures = IMU1(:,[3,5,8,11,13]);
-zFeatures = IMU1(:,[3,6,9,12,13]);
-pos_train = intUp(IMU1);
+xFeatures = IMU2(:,[3,4,7,10,13]);
+yFeatures = IMU2(:,[3,5,8,11,13]);
+zFeatures = IMU2(:,[3,6,9,12,13]);
+pos_train = intUp(IMU2);
 xLab_train = pos_train(2:end,1);
 yLab_train = pos_train(2:end,2);
 zLab_train = pos_train(2:end,3);
@@ -33,4 +33,4 @@ for i=1:(size(xFeatures,1)-LOOK_AHEAD)
     i
 end
 
-save('AllReg3.mat');
+save('AllRegZ_IMU2.mat');
